@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="./style.css">
+	<style type="text/css">
+
+	</style>
+</head>
+<body>
+	<div class="carousel">
+		<div class="Con">
+		<!-- 轮播(carousel)项目 -->
+			<div class="scroll">
+				<img src="./pic/1.jpg">
+				<img src="./pic/2.jpg">
+				<img src="./pic/3.jpg">
+				<img src="./pic/4.jpg">
+				<img src="./pic/5.jpg">
+				<img src="./pic/6.jpg">
+				<img src="./pic/7.jpg">				
+			</div>
+
+			<!-- 轮播(carousel)指标 -->
+			<div class="But">
+				<span class="active"></span> <!-- 0 * img.width -->
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div> 
+		</div>
+
+		<!-- 轮播(carousel)导航 -->
+		<a href="javascript:void(0)" class="prev" data-slide="prev"> << </a>
+		<a href="javascript:void(0)" class="next" data-slide="next"> >> </a>
+	</div>
+	<ul id="leftBox">
+    <li><a href="http://news.163.com/11/0321/04/6VL4M54L00014JB5.html" title="">卡扎菲号召全国皆兵 向人民打开武器库</a></li>
+    <li><a href="http://news.163.com/11/0321/04/6VL4M54L00014JB5.html" title="">利比亚首都遭空袭 政府军射防空炮反击</a></li>
+    <li><a href="http://news.163.com/11/0321/02/6VKTCF2100014AED.html" title="">私家车主明年起可使用北斗卫星定位服务</a></li>
+    <li><a href="http://t.163.com/jstvmengfei/status/3706007028503705259" title="">孟非微博盛赞白岩松 不愧是央视一哥</a></li>
+    <li><a href="http://t.163.com/wuxiaobo/status/6382213403461277859" title="">吴晓波：来自韩剧中的四十岁感悟</a></li>
+    <li><a href="http://ent.163.com/11/0320/22/6VKGL3UE00034JRU.html" title="">图集：独家曝光大S汪小菲婚礼现场</a></li>
+    <li><a href="http://money.163.com/photoview/0HH40025/1376.html#p=6VLLUR4G0HH40025#fr=email" title="">图集:日本石油紧缺 车辆高速路上排队购</a></li>
+</ul>
+<script type="text/javascript">
+setInterval(function(){
+    $('#leftBox li:last').css({'height':'0px','opacity': '0'}).insertBefore('#leftBox li:first').animate({'height':'35px','opacity': '1'}, 'slow', function() {
+      $(this).removeAttr('style');
+    });
+},1000);
+</script>
+
+	<script type="text/javascript">
+		var _index = 0;
+		var time = 0;
+		$(".But span").click(function() {
+			_index = $(this).index();
+			play(_index);
+		});
+
+		function play(index) {
+			$(".But span").eq(index).addClass('active').siblings('span').removeClass('active');
+			$('.scroll').animate({left: -(_index*1024)}, 500);
+		}
+
+		function autoPlay() {
+			time = setInterval(function() {
+				_index++;
+				if(_index > 6) {
+					$('.scroll').css("left", 0);
+					_index = 0;
+				}
+				play(_index);
+			}, 3000);
+		}
+		autoPlay();
+		$('.prev').click(function() {
+			if(_index <= 0) {
+				return;
+			}
+			clearInterval(time);
+
+			play(--_index);
+			autoPlay();
+		});
+		$('.next').click(function() {
+			if(_index >= 6) {
+				return;
+			}
+			clearInterval(time);
+			play(++_index);
+			autoPlay();
+		});		
+		/*
+			不好的地方：
+			1. 代码不可复用
+			2. 用户体验极差  （希望采用配置项进行配置）
+				eg：要不要自动轮播
+					轮播的时间控制
+					拉伸的效果，还是淡入淡出的效果
+		*/
+	</script>
+</body>
+</html>

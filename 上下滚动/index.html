@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<style type="text/css">
+		.ul-list li {
+			text-decoration: none;
+			list-style: none;
+		}
+	</style>
+</head>
+<body>
+	<ul class="ul-list">
+		<li><a href="http://blog.csdn.net/dear_mr/article/details/69664060">本地数据正反查询的实现例子</a></li>
+		<li><a href="http://blog.csdn.net/dear_mr/article/details/69454662">A-star寻路算法</a></li>
+		<li><a href="http://blog.csdn.net/dear_mr/article/details/69261190">node.js的querystring.stringify的使用</a></li>
+		<li><a href="http://blog.csdn.net/dear_mr/article/details/65521457">利用事件委托写一个简易扫雷游戏</a></li>
+		<li><a href="http://blog.csdn.net/dear_mr/article/details/62579029">懒加载（延迟加载）</a></li>
+		<li><a href="http://blog.csdn.net/dear_mr/article/details/61669330">JS中XML的解析</a></li>
+	</ul>
+	<script type="text/javascript">
+		setInterval(function() {
+			$('.ul-list li:last').css({'height':'0px', 'opacity':"0"}).insertBefore(".ul-list li:first").animate({'height':'25px', 'opacity': '1'}, 'slow', function() {
+				$(this).removeAttr('style');
+			})
+		}, 3000);
+	</script>
+</body>
+</html>
